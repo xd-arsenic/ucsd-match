@@ -1,50 +1,43 @@
 import Nav from '../components/Nav'
 import {useState} from 'react'
-import {useCookies} from 'react-cookie'
-import {useNavigate} from 'react-router-dom'
-import axios from 'axios'
 
 const OnBoarding = () => {
-    const [cookies, setCookie, removeCookie] = useCookies(null)
     const [formData, setFormData] = useState({
-        user_id: cookies.UserId,
-        first_name: "",
+        user_id: '',
+        full_name: '',
         show_gender: true,
-        gender_identity: "",
-        gender_interest: "",
-        sleeping_period: "",
-        url: "",
-        about: "",
+        gender_identity: '',
+        gender_interest: '',
+        sleeping_period: '',
+        animals_q: '',
+        alc_q: '',
+        smoking_q: '',
+        f_or_r: '',
+        clean: '',
+        email: '',
+        about: '',
         matches: []
-
     })
 
-    let navigate = useNavigate()
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = () => {
+        console.log(formData)
         console.log('submitted')
-        e.preventDefault()
-        try {
-            const response = await axios.put('http://localhost:8000/user', {formData})
-            console.log(response)
-            const success = response.status === 200
-            if (success) navigate('/dashboard')
-        } catch (err) {
-            console.log(err)
-        }
-
     }
 
     const handleChange = (e) => {
         console.log('e', e)
-        const value = e.target.type === "checkbox" ? e.target.checked : e.target.value
+        const value = e.target.value
         const name = e.target.name
+        console.log('value' + value, 'name' + name)
 
-        setFormData((prevState) => ({
+        setFormData((prevState) =>({
             ...prevState,
-            [name]: value
+            [name] : value
         }))
     }
+
+    console.log(formData)
+
 
     return (
         <>
@@ -60,15 +53,15 @@ const OnBoarding = () => {
 
                 <form onSubmit={handleSubmit}>
                     <section>
-                        <label htmlFor="first_name">Name</label>
+                        <label htmlFor="full_name">Name</label>
                         <input
-                            id="first_name"
+                            id="full_name"
                             type='text'
-                            name="first_name"
+                            name="full_name"
                             placeholder="First Last Name"
                             required={true}
-                            maxlength="20"
-                            value={formData.first_name}
+                            maxLength="20"
+                            value={formData.full_name}
                             onChange={handleChange}
                         />
 
@@ -78,29 +71,29 @@ const OnBoarding = () => {
                                 id="man-gender-identity"
                                 type="radio"
                                 name="gender_identity"
-                                value="man"
+                                value="he/him"
                                 onChange={handleChange}
-                                checked={formData.gender_identity === "man"}
+                                checked={formData.gender_identity === "he/him"}
                             />
                             <label htmlFor="man-gender-identity">He/Him</label>
                             <input
                                 id="woman-gender-identity"
                                 type="radio"
                                 name="gender_identity"
-                                value="woman"
+                                value="she/her"
                                 onChange={handleChange}
-                                checked={formData.gender_identity === "woman"}
+                                checked={formData.gender_identity === "she/her"}
                             />
                             <label htmlFor="woman-gender-identity">She/Her</label>
                             <input
-                                id="more-gender-identity"
+                                id="they-gender-identity"
                                 type="radio"
                                 name="gender_identity"
-                                value="more"
+                                value="they"
                                 onChange={handleChange}
-                                checked={formData.gender_identity === "more"}
+                                checked={formData.gender_identity === "they"}
                             />
-                            <label htmlFor="more-gender-identity">They/Them</label>
+                            <label htmlFor="they-gender-identity">They/Them</label>
                             <input
                                 id="ask-gender-identity"
                                 type="radio"
@@ -109,7 +102,7 @@ const OnBoarding = () => {
                                 onChange={handleChange}
                                 checked={formData.gender_identity === "ask"}
                             />
-                            <label htmlFor="man-gender-identity">Ask❔</label>
+                            <label htmlFor="ask-gender-identity">Ask❔</label>
                         </div>
 
                         <label htmlFor="show-gender">Show Pronouns on my Profile </label>
@@ -258,7 +251,7 @@ const OnBoarding = () => {
                             <input
                                 id="yes_people_over"
                                 type="radio"
-                                name="people_over"
+                                name="smoking_q"
                                 value="yes"
                                 onChange={handleChange}
                                 checked={formData.people_over === "yes"}
@@ -292,12 +285,12 @@ const OnBoarding = () => {
                                 name="f_or_r"
                                 value="rommates"
                                 onChange={handleChange}
-                                checked={formData.f_or_rr === "room"}
+                                checked={formData.f_or_r === "roommmates"}
                             />
-                            <label htmlFor="no_people_over">Roommates</label>
+                            <label htmlFor="room_f_or_r">Roommates</label>
                         </div>
 
-                        <label htmlFor="clean">Cleanliness Level🧼</label>
+                        <label htmlFor="clean">Cleanliness Level🧼 (1-10)</label>
                         <input
                             id="clean"
                             type="number"
@@ -305,7 +298,7 @@ const OnBoarding = () => {
                             maxLength={2}
                             name="clean"
                             required={true}
-                            placeholder="(1-10)"
+                            placeholder="1-10"
                             value={formData.clean}
                             onChange={handleChange}
                         />
