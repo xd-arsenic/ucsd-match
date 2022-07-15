@@ -324,8 +324,15 @@ div.close-icon::before {
 .dashboard {
     display: flex;
     justify-content: space-between;
-    background-color: #eef1f7;
+    background-image: url(images/built.png);
+    background-size: 500px;
+    background-repeat: no-repeat;
+    background-position-x: 75%;
+    background-position-y: center;
     height: 100vh;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow: auto;
 }
 
 .dashboard .swipe-container {
@@ -378,6 +385,17 @@ div.close-icon::before {
     padding: 10px;
 }
 
+@media screen and (max-width: 414px) {
+    .profile{
+        margin-left: -40px;
+    }
+
+    .chat-container-header i {
+        margin-left: -5px;
+        margin-right: 20px;
+    }
+}
+
 /*-------- Chat Container --------*/
 .chat-container {
     background-color: rgb(255, 255, 255);
@@ -386,11 +404,24 @@ div.close-icon::before {
     width: 30%;
     text-align: left;
     z-index: 1;
+    height: 100%;
+}
+
+.chat-container h2 {
+    font-size: 20px;
+    margin: 20px;
+    margin-top: 30px;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 560px) {
+    .chat-container{
+        width: 100%;
+    }
 }
 
 .chat-container .chat-container-header {
     background: linear-gradient(45deg, #6082B6, #8A9A5B);
-    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -438,8 +469,20 @@ div.close-icon::before {
 .chat-display,
 .matches-display {
     padding: 20px;
-    height: 60vh;
+    height: 48vh;
     overflow-y: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .chat-display{
+        max-height: 250px;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .chat-display{
+        max-height: 210px;
+    }
 }
 
 /*-------- Chat Input --------*/

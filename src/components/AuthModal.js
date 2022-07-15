@@ -30,12 +30,14 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp}) => {
             const response = await axios.post(`https://api.ucsd26.com/${isSignUp ? 'signup' : 'login'}`, { email, password})
 
             setCookie('AuthToken', response.data.token)
-            setCookie('UserID', response.data.userID)
+            setCookie('UserId', response.data.userId)
 
             const success = response.status === 201
 
             if (success && isSignUp) navigate('/onboarding')
             if (success && !isSignUp) navigate('/dashboard')
+
+            console.log('yes')
 
         } catch (error) {
             console.log(error)

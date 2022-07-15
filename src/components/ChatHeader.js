@@ -5,7 +5,7 @@ const ChatHeader = () => {
                 <div className="img-container">
                     <img src=""/>
                 </div>
-                <h3>UserName</h3>
+                <h3>UCSD Match</h3>
             </div>
             <i className="log-out-icon">⮐</i>
         </div> 

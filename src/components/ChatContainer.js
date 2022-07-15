@@ -12,7 +12,6 @@ const ChatContainer = () => {
                 <button className="option">Chat</button>
             </div>
 
-            <MatchesDisplay/>
 
             <ChatDisplay/>
 

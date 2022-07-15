@@ -8,7 +8,7 @@ import axios from 'axios'
 const OnBoarding = () => {
     const [ cookies, setCookie, removeCookie] = useCookies(['user'])
     const [formData, setFormData] = useState({
-        userID: cookies.UserId,
+        user_id: cookies.UserId,
         full_name: '',
         college: '',
         show_gender: true,
@@ -31,9 +31,13 @@ const OnBoarding = () => {
         e.preventDefault()
         try {
             const response = await axios.put('https://api.ucsd26.com/user', { formData })
-            const success = response.statusCode === 200
+            const success = response.status === 200
 
-            if (success) navigate ('/dashboard')
+            if (success) {
+                console.log('this should be working')
+                navigate ('/Dashboard')
+            }
+
         } catch (err) {
             console.log(err)
         }
@@ -344,7 +348,7 @@ const OnBoarding = () => {
                             <input
                                 id="yes_people_over"
                                 type="radio"
-                                name="smoking_q"
+                                name="people_over"
                                 value="yes"
                                 onChange={handleChange}
                                 checked={formData.people_over === "yes"}
@@ -376,9 +380,9 @@ const OnBoarding = () => {
                                 id="room_f_or_r"
                                 type="radio"
                                 name="f_or_r"
-                                value="rommates"
+                                value="roommates"
                                 onChange={handleChange}
-                                checked={formData.f_or_r === "roommmates"}
+                                checked={formData.f_or_r === "roommates"}
                             />
                             <label htmlFor="room_f_or_r">Roommates</label>
                         </div>
