@@ -1,9 +1,14 @@
 import Nav from '../components/Nav'
 import {useState} from 'react'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
 
 const OnBoarding = () => {
+    const [ cookies, setCookie, removeCookie] = useCookies(['user'])
     const [formData, setFormData] = useState({
-        user_id: '',
+        userID: cookies.UserId,
         full_name: '',
         college: '',
         show_gender: true,
@@ -15,14 +20,25 @@ const OnBoarding = () => {
         smoking_q: '',
         f_or_r: '',
         clean: '',
-        email: '',
         about: '',
         matches: []
     })
 
-    const handleSubmit = () => {
+    let navigate = useNavigate()
+
+    const handleSubmit = async (e) => {
         console.log('submitted')
+        e.preventDefault()
+        try {
+            const response = await axios.put('https://api.ucsd26.com/user', { formData })
+            const success = response.statusCode === 200
+
+            if (success) navigate ('/dashboard')
+        } catch (err) {
+            console.log(err)
+        }
     }
+
 
     const handleChange = (e) => {
         console.log('e', e)

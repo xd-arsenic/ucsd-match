@@ -22,7 +22,7 @@ const Home = () => {
             showModal={showModal}
             setIsSignUp={setIsSignUp}/>
             <div className="home">
-                <h1>Find your match.</h1>
+                <h1>Find your match</h1>
                 <button className="primary-button" onClick={handleClick}>
                     {authToken ? 'Signout' : 'Create Account'}
                 </button>

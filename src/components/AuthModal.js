@@ -27,11 +27,10 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp}) => {
                 return
             }
 
-            const response = await axios.post(`http://192.168.1.89:8000/${isSignUp ? 'signup' : 'login'}`, { email, password})
+            const response = await axios.post(`https://api.ucsd26.com/${isSignUp ? 'signup' : 'login'}`, { email, password})
 
-            setCookie('Email', response.data.email)
-            setCookie('UserId', response.data.userId)
             setCookie('AuthToken', response.data.token)
+            setCookie('UserID', response.data.userID)
 
             const success = response.status === 201
 
