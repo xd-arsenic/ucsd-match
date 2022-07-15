@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from "react-router-dom"
+import { useCookies } from 'react-cookie'
 
 const AuthModal = ({ setShowModal, setIsSignUp, isSignUp}) => {
 
@@ -6,6 +9,9 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp}) => {
     const [ password, setPassword] = useState(null)
     const [ confirmPassword, setConfrimPassword] = useState(null)
     const [ error, setError] = useState(null)
+    const [ cookies, setCookie, removeCookie] = useCookies(['user'])
+
+    let navigate = useNavigate()
 
     console.log(email, password, confirmPassword)
 
@@ -13,13 +19,25 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp}) => {
         setShowModal(false)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             if( isSignUp && ( password !== confirmPassword)) {
                 setError('Passwords need to match!')
+                return
             }
-            console.log('make a post request to our database')
+
+            const response = await axios.post(`http://192.168.1.89:8000/${isSignUp ? 'signup' : 'login'}`, { email, password})
+
+            setCookie('Email', response.data.email)
+            setCookie('UserId', response.data.userId)
+            setCookie('AuthToken', response.data.token)
+
+            const success = response.status === 201
+
+            if (success && isSignUp) navigate('/onboarding')
+            if (success && !isSignUp) navigate('/dashboard')
+
         } catch (error) {
             console.log(error)
         }
@@ -45,6 +63,8 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp}) => {
                 name="password"
                 placeholder="Password"
                 required={true}
+                minLength="8"
+                maxLength="20"
                 onChange={(e) => setPassword(e.target.value)}
                 />
                 {isSignUp && <input
@@ -60,7 +80,7 @@ const AuthModal = ({ setShowModal, setIsSignUp, isSignUp}) => {
                 <p>{error}</p>
             </form>
 
-            {isSignUp || <div><hr/><br/><a>Thank you for returning. Our users our growing at every hour. Sign in to explore new profiles.</a></div>}
+            {isSignUp || <div><hr/><br/><a>Thank you for returning. Our users are growing at every hour. Sign in to explore new profiles.</a></div>}
             
         </div>
     )

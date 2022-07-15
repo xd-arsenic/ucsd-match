@@ -5,6 +5,7 @@ const OnBoarding = () => {
     const [formData, setFormData] = useState({
         user_id: '',
         full_name: '',
+        college: '',
         show_gender: true,
         gender_identity: '',
         gender_interest: '',
@@ -20,13 +21,12 @@ const OnBoarding = () => {
     })
 
     const handleSubmit = () => {
-        console.log(formData)
         console.log('submitted')
     }
 
     const handleChange = (e) => {
         console.log('e', e)
-        const value = e.target.value
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
         const name = e.target.name
         console.log('value' + value, 'name' + name)
 
@@ -64,6 +64,83 @@ const OnBoarding = () => {
                             value={formData.full_name}
                             onChange={handleChange}
                         />
+
+<label>College</label>
+                        <div className="colleges">
+                            <input
+                                id="revelle_college"
+                                type="radio"
+                                name="college"
+                                value="revelle"
+                                onChange={handleChange}
+                                checked={formData.college === "revelle"}
+                            />
+                            <label htmlFor="revelle_college">Revelle</label>
+
+                            <input
+                                id="muir_college"
+                                type="radio"
+                                name="college"
+                                value="muir"
+                                onChange={handleChange}
+                                checked={formData.college === "muir"}
+                            />
+                            <label htmlFor="muir_college">Muir</label>
+
+                            <input
+                                id="marshall_college"
+                                type="radio"
+                                name="college"
+                                value="marshall"
+                                onChange={handleChange}
+                                checked={formData.college === "marshall"}
+                            />
+                            <label htmlFor="marshall_college">Marshall</label>
+
+                            <input
+                                id="warren_college"
+                                type="radio"
+                                name="college"
+                                value="warren"
+                                onChange={handleChange}
+                                checked={formData.college === "warren"}
+                            />
+                            <label htmlFor="warren_college">Warren</label>
+                            </div>
+                            
+                            <div className="colleges">
+
+                            <input
+                                id="roosevelt_college"
+                                type="radio"
+                                name="college"
+                                value="roosevelt"
+                                onChange={handleChange}
+                                checked={formData.college === "roosevelt"}
+                            />
+                            <label htmlFor="roosevelt_college">Roosevelt</label>
+
+                            <input
+                                id="sixth_college"
+                                type="radio"
+                                name="college"
+                                value="sixth"
+                                onChange={handleChange}
+                                checked={formData.college === "sixth"}
+                            />
+                            <label htmlFor="sixth_college">Sixth</label>
+
+                            <input
+                                id="seventh_college"
+                                type="radio"
+                                name="college"
+                                value="seventh"
+                                onChange={handleChange}
+                                checked={formData.college === "seventh"}
+                            />
+                            <label htmlFor="seventh_college">Seventh</label>
+
+                        </div>
 
                         <label>Pronouns</label>
                         <div className="multiple-input-container">
@@ -117,7 +194,7 @@ const OnBoarding = () => {
                         </div>
 
                         <label>Room With 🏠</label>
-                        <div className="room-with-desc"><a>*As chosen on hosuing preferences. For gender inclusive housing, click "Inclusive". </a></div>
+                        <div className="room-with-desc"><a>*As chosen on housing preferences. For gender inclusive housing, click "Inclusive".</a></div>
                         <div className="multiple-input-container">
                             <input
                                 id="man-gender-interest"
@@ -177,7 +254,7 @@ const OnBoarding = () => {
                                 onChange={handleChange}
                                 checked={formData.sleeping_period === "late"}
                             />
-                            <label htmlFor="late_sleeping_periodt">Night Owl 🦉</label>
+                            <label htmlFor="late_sleeping_period">Night Owl 🦉</label>
                         </div>
 
                         <label>Service Animal / Pets 🐕‍🦺</label>

@@ -187,9 +187,15 @@ div.close-icon::before {
 
 @media screen and (max-width: 414px) {
     .auth-modal {
-        height: 65%;
+        height: 75%;
         width: 65%;
-        top: 80px;
+        top: 50px;
+    }
+
+    div.close-icon::before {
+        content: url(images/close.png);
+        size: 5px;
+        
     }
 
     .auth-modal input[type=password],
@@ -253,6 +259,26 @@ div.close-icon::before {
     margin-right: 10px;
 }
 
+.onboarding form .colleges {
+    display: flex;
+    flex-direction: row;
+    max-width: 100px;
+}
+
+.onboarding form .colleges input {
+    margin-right: 10px;
+    max-width: 100px;
+}
+
+.onboarding form .colleges label {
+    padding: 10px;
+    border: solid 2px rgb(144, 144, 144);
+    border-radius: 10px;
+    transition: all 0.3s;
+    margin-right: 10px;
+    max-width: 100px;
+}
+
 .onboarding form input[type=radio] {
     display: none;
 }
@@ -298,6 +324,8 @@ div.close-icon::before {
 .dashboard {
     display: flex;
     justify-content: space-between;
+    background-color: #eef1f7;
+    height: 100vh;
 }
 
 .dashboard .swipe-container {
@@ -316,6 +344,8 @@ div.close-icon::before {
 .dashboard .card-container {
     width: 400px;
     height: 650px;
+    margin-right: 180px;
+    margin-top: 33%
 }
 
 .card {
@@ -324,10 +354,22 @@ div.close-icon::before {
     border-radius: 30px;
     background-size: cover;
     background-position: center;
+    max-width: 100%;
+    height: 600px;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.30);
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    background-color: white;
 }
 
 .card h3 {
     margin-top: 0;
+}
+
+.card-name h3 {
+    padding-top: 10px;
+    color: black;
 }
 
 .dashboard .swipe-info {
@@ -347,7 +389,7 @@ div.close-icon::before {
 }
 
 .chat-container .chat-container-header {
-    background: linear-gradient(45deg, rgb(254, 48, 114), rgb(255, 89, 64));
+    background: linear-gradient(45deg, #6082B6, #8A9A5B);
     height: 100px;
     display: flex;
     justify-content: space-between;
@@ -357,7 +399,7 @@ div.close-icon::before {
 .chat-container .option {
     border: none;
     background-color: rgb(255, 255, 255);
-    border-bottom: solid 4px rgb(243, 33, 33);
+    border-bottom: solid 4px #6082B6;
     font-size: 20px;
     margin: 2px;
     padding: 10px;
@@ -372,7 +414,12 @@ div.close-icon::before {
     display: flex;
     align-items: center;
     padding: 20px;
-    color: rgb(255, 255, 255);
+    color: white;
+    font-size: 20px;
+}
+
+.log-out-icon {
+    font-size: 30px !important;
 }
 
 .img-container {
@@ -400,4 +447,8 @@ div.close-icon::before {
     padding: 20px;
     display: flex;
     flex-direction: column;
+}
+
+.chat-input textarea {
+    border-radius: 5px;
 }
