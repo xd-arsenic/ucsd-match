@@ -324,11 +324,6 @@ div.close-icon::before {
 .dashboard {
     display: flex;
     justify-content: space-between;
-    background-image: url(images/built.png);
-    background-size: 500px;
-    background-repeat: no-repeat;
-    background-position-x: 75%;
-    background-position-y: center;
     height: 100vh;
     flex-direction: column;
     max-height: 100vh;
@@ -396,6 +391,12 @@ div.close-icon::before {
     }
 }
 
+@media screen and (max-width: 410px) {
+    .profile{
+        margin-left: 20px;
+    }
+}
+
 /*-------- Chat Container --------*/
 .chat-container {
     background-color: rgb(255, 255, 255);
@@ -414,7 +415,7 @@ div.close-icon::before {
     font-weight: 400;
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 910px) {
     .chat-container{
         width: 100%;
     }
@@ -425,6 +426,7 @@ div.close-icon::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-left: -40px;
 }
 
 .chat-container .option {
@@ -434,6 +436,7 @@ div.close-icon::before {
     font-size: 20px;
     margin: 2px;
     padding: 10px;
+    margin-left: 10px;
 }
 
 .chat-container .option:disabled {
